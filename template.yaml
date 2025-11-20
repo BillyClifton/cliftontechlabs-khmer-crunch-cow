@@ -65,10 +65,6 @@ Resources:
         Enabled: true
         Comment: "CliftonTechLabs.com static website"
         DefaultRootObject: index.html
-        ViewerCertificate:
-          AcmCertificateArn: !Ref WebsiteCertificate
-          SslSupportMethod: sni-only
-          MinimumProtocolVersion: TLSv1.2_2021
         DefaultCacheBehavior:
           TargetOriginId: WebsiteOrigin
           ViewerProtocolPolicy: redirect-to-https

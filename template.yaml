@@ -1,15 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Static website on S3 with CloudFront for CliftonTechLabs.com
-
-Globals:
-  Function:
-    Timeout: 3
-
-
-Conditions:
-  IsDomainSpecified: !Not [!Equals [!Ref DomainName, ""]]
-
 Resources:
   LoggingBucket:
     Type: AWS::S3::Bucket

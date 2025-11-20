@@ -1,0 +1,60 @@
+name: Deploy Static Website
+
+on:
+  push:
+    branches:
+      - main
+      - stage
+env:
+  AWS_REGION: us-east-1
+  STACK_NAME: khmer-crunch-cow-${{ github.ref_name }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    environment: ${{ github.ref_name }}
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+        aws-region: ${{ env.AWS_REGION }}
+    
+    - name: Build Application
+      run: |
+        echo "Env: ${{ env.API_BASE_URL }}"
+        echo "Github: ${{ github.ref_name}}"
+        echo "vars: ${{ vars.API_BASE_URL }}"
+        sed -i "s|API_BASE_URL_PLACEHOLDER|${{ env.API_BASE_URL }}|g" src/lib/config.js
+
+    - name: Deploy SAM Stack
+      run: |
+        sam deploy \
+          --stack-name "${STACK_NAME}" \
+          --capabilities CAPABILITY_IAM \
+          --region "${AWS_REGION}" \
+          --no-confirm-changeset \
+          --no-fail-on-empty-changeset \
+          --no-progressbar
+    - name: Deploy to S3
+      run: |
+        BUCKET_NAME=$(aws cloudformation describe-stacks \
+          --stack-name "${STACK_NAME}" \
+          --query "Stacks[0].Outputs[?OutputKey=='BucketName'].OutputValue" \
+          --output text)
+        aws s3 sync src/ "s3://${BUCKET_NAME}" --delete
+
+    - name: Invalidate CloudFront Cache
+      run: |
+        DISTRIBUTION_ID=$(aws cloudformation describe-stacks \
+          --stack-name "${STACK_NAME}" \
+          --query "Stacks[0].Outputs[?OutputKey=='CloudFrontID'].OutputValue" \
+          --output text)
+        aws cloudfront create-invalidation --distribution-id "$DISTRIBUTION_ID" --paths "/*"

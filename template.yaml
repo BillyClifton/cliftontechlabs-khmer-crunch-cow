@@ -49,7 +49,6 @@ Resources:
 
 
   CloudFrontOAC:
-    Condition: IsDomainSpecified
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
       OriginAccessControlConfig:
@@ -60,7 +59,6 @@ Resources:
         SigningProtocol: sigv4
 
   CloudFrontDistribution:
-    Condition: IsDomainSpecified
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:

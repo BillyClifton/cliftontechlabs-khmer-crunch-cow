@@ -27,13 +27,6 @@ jobs:
         role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
         aws-region: ${{ env.AWS_REGION }}
     
-    - name: Build Application
-      run: |
-        echo "Env: ${{ env.API_BASE_URL }}"
-        echo "Github: ${{ github.ref_name}}"
-        echo "vars: ${{ vars.API_BASE_URL }}"
-        sed -i "s|API_BASE_URL_PLACEHOLDER|${{ env.API_BASE_URL }}|g" src/lib/config.js
-
     - name: Deploy SAM Stack
       run: |
         sam deploy \

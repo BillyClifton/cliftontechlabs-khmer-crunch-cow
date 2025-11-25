@@ -15,6 +15,47 @@
 
   <!-- Tailwind + Custom Colors -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+  /* Hamburger Animation */
+  .ham {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: #1A1A1A;
+    margin: 6px auto;
+    transition: 0.3s;
+    border-radius: 2px;
+  }
+
+  .ham1.open { transform: rotate(45deg) translate(8px, 8px); }
+  .ham2.open { opacity: 0; }
+  .ham3.open { transform: rotate(-45deg) translate(7px, -7px); }
+
+  /* Mobile Menu Open State */
+  #mobile-menu.open {
+    transform: translateX(0);
+    display: flex;
+  }
+
+  /* Smooth link close */
+  .menu-link {
+    position: relative;
+  }
+  .menu-link::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #FFB300;
+    transition: all 0.3s;
+    transform: translateX(-50%);
+  }
+  .menu-link:hover::after {
+    width: 70%;
+  }
+</style>
   <script>
     tailwind.config = {
       theme: {
@@ -37,37 +78,55 @@
 
 <body class="bg-khmer-cream text-khmer-dark min-h-screen">
 
-  <!-- HEADER -->
-  <header class="border-b-4 border-khmer-dark py-4 px-6 sticky top-0 bg-khmer-cream z-50 shadow-md">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="group">
-        <img src="/assets/logo.png" alt="Khmer Krunchy Cow Logo" 
-             class="w-20 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-      </a>
+ <!-- HEADER (Updated) -->
+<header class="border-b-4 border-khmer-dark py-4 px-6 sticky top-0 bg-khmer-cream z-50 shadow-md">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="group">
+      <img src="/assets/logo.png" alt="Khmer Krunchy Cow Logo" 
+           class="w-20 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+    </a>
 
-      <h1 class="text-3xl font-display font-bold tracking-widest text-khmer-red hidden md:block">
-        KHMER KRUNCHY COW
-      </h1>
+    <h1 class="text-3xl font-display font-bold tracking-widest text-khmer-red hidden md:block">
+      KHMER KRUNCHY COW
+    </h1>
 
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" class="md:hidden text-3xl">☰</button>
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" aria-label="Open menu" class="md:hidden text-3xl focus:outline-none z-50 relative">
+      <span class="ham ham1"></span>
+      <span class="ham ham2"></span>
+      <span class="ham ham3"></span>
+    </button>
 
-      <!-- Desktop Nav -->
-      <nav id="nav-desktop" class="hidden md:flex gap-8 text-lg font-semibold">
-        <a href="#shop" class="hover:text-khmer-red transition">Shop</a>
-        <a href="#about" class="hover:text-khmer-red transition">About</a>
-        <a href="#contact" class="hover:text-khmer-red transition">Contact</a>
-      </nav>
-    </div>
-
-    <!-- Mobile Nav -->
-    <nav id="nav-mobile" class="hidden flex-col items-center gap-6 py-6 text-xl font-semibold border-t border-khmer-dark mt-4 md:hidden">
-      <a href="#shop" class="hover:text-khmer-red">Shop</a>
-      <a href="#about" class="hover:text-khmer-red">About</a>
-      <a href="#contact" class="hover:text-khmer-red">Contact</a>
+    <!-- Desktop Nav -->
+    <nav id="nav-desktop" class="hidden md:flex gap-8 text-lg font-semibold">
+      <a href="#shop" class="hover:text-khmer-red transition">Shop</a>
+      <a href="#about" class="hover:text-khmer-red transition">About</a>
+      <a href="#contact" class="hover:text-khmer-red transition">Contact</a>
     </nav>
-  </header>
+  </div>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark bg-opacity-95 transform translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col items-center justify-center hidden">
+    <!-- Close Button -->
+    <button id="close-btn" aria-label="Close menu" class="absolute top-8 right-8 text-khmer-gold text-4xl hover:text-white transition">
+      ×
+    </button>
+
+    <!-- Logo in Menu -->
+    <img src="/assets/logo.png" alt="Khmer Krunchy Cow" class="w-32 h-32 mb-12 drop-shadow-xl animate-pulse">
+
+    <!-- Nav Links -->
+    <nav class="flex flex-col gap-10 text-3xl font-display uppercase tracking-widest text-khmer-cream">
+      <a href="#shop" class="menu-link hover:text-khmer-gold transition">Shop</a>
+      <a href="#about" class="menu-link hover:text-khmer-gold transition">About</a>
+      <a href="#contact" class="menu-link hover:text-khmer-gold transition">Contact</a>
+    </nav>
+
+    <!-- Fun Tagline -->
+    <p class="mt-16 text-khmer-gold text-lg font-body italic">Crunch Like a Cambodian</p>
+  </div>
+</header>
 
   <!-- HERO SECTION -->
   <section class="relative px-6 py-24 text-center overflow-hidden">
@@ -175,12 +234,42 @@
   </footer>
 
   <!-- Mobile Menu Script -->
-  <script>
-    document.getElementById('menu-btn').addEventListener('click', () => {
-      const mobileNav = document.getElementById('nav-mobile');
-      mobileNav.classList.toggle('hidden');
-    });
-  </script>
+<script>
+  const menuBtn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('close-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hamLines = document.querySelectorAll('.ham');
+  const links = document.querySelectorAll('.menu-link');
+
+  // Open Menu
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.remove('hidden', 'translate-x-full');
+    mobileMenu.classList.add('open');
+    hamLines.forEach(line => line.classList.add('open'));
+    document.body.style.overflow = 'hidden'; // Prevent scroll
+  });
+
+  // Close Menu
+  function closeMenu() {
+    mobileMenu.classList.add('translate-x-full');
+    setTimeout(() => {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('open');
+    }, 300);
+    hamLines.forEach(line => line.classList.remove('open'));
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeMenu);
+  links.forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Close on outside click
+  mobileMenu.addEventListener('click', (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+</script>
 
 </body>
 </html>

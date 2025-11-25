@@ -3,136 +3,184 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khmer Krunchy Cow</title>
+  <title>Khmer Krunchy Cow | Premium Cambodian Beef Jerky</title>
+  <meta name="description" content="Hand-crafted Cambodian beef jerky. Crunchy, bold, authentic. Non-spicy, mild, spicy, and keto options available.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="/assets/favicon-16.png" sizes="16x16">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind + Custom Colors -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'khmer-red': '#D41F26',
+            'khmer-gold': '#FFB300',
+            'khmer-dark': '#1A1A1A',
+            'khmer-cream': '#FFF8F0',
+          },
+          fontFamily: {
+            display: ['Oswald', 'sans-serif'],
+            body: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 </head>
 
-<body class="bg-white text-black">
+<body class="bg-khmer-cream text-khmer-dark min-h-screen">
 
   <!-- HEADER -->
-  <header class="border-b border-black py-4 px-6 flex items-center justify-between">
-    <!-- Logo Placeholder -->
-    <div class="w-20 h-20 bg-gray-200 border border-black flex items-center justify-center">
-      <span class="text-sm text-gray-600">LOGO</span>
+  <header class="border-b-4 border-khmer-dark py-4 px-6 sticky top-0 bg-khmer-cream z-50 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="group">
+        <img src="/assets/logo.png" alt="Khmer Krunchy Cow Logo" 
+             class="w-20 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+      </a>
+
+      <h1 class="text-3xl font-display font-bold tracking-widest text-khmer-red hidden md:block">
+        KHMER KRUNCHY COW
+      </h1>
+
+      <!-- Mobile Menu Button -->
+      <button id="menu-btn" class="md:hidden text-3xl">☰</button>
+
+      <!-- Desktop Nav -->
+      <nav id="nav-desktop" class="hidden md:flex gap-8 text-lg font-semibold">
+        <a href="#shop" class="hover:text-khmer-red transition">Shop</a>
+        <a href="#about" class="hover:text-khmer-red transition">About</a>
+        <a href="#contact" class="hover:text-khmer-red transition">Contact</a>
+      </nav>
     </div>
 
-    <h1 class="text-3xl font-extrabold tracking-wide uppercase">
-      Khmer Krunchy Cow
-    </h1>
-
-    <nav class="hidden md:flex gap-6 text-lg font-semibold">
-      <a href="#shop" class="hover:text-gray-600">Shop</a>
-      <a href="#about" class="hover:text-gray-600">About</a>
-      <a href="#contact" class="hover:text-gray-600">Contact</a>
+    <!-- Mobile Nav -->
+    <nav id="nav-mobile" class="hidden flex-col items-center gap-6 py-6 text-xl font-semibold border-t border-khmer-dark mt-4 md:hidden">
+      <a href="#shop" class="hover:text-khmer-red">Shop</a>
+      <a href="#about" class="hover:text-khmer-red">About</a>
+      <a href="#contact" class="hover:text-khmer-red">Contact</a>
     </nav>
   </header>
 
   <!-- HERO SECTION -->
-  <section class="px-6 py-20 text-center border-b border-black">
-    <h2 class="text-4xl md:text-5xl font-extrabold uppercase mb-6 tracking-wide">
-      Premium Cambodian Jerky
-    </h2>
-    <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto">
-      Hand-crafted, bold, and unbelievably crunchy. Made with authentic Khmer flavors and the perfect balance of sweetness, smoke, and spice.
-    </p>
+  <section class="relative px-6 py-24 text-center overflow-hidden">
+    <!-- Background Temple Silhouette -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+      <img src="/assets/temple-bg.svg" alt="" class="w-full h-full object-cover">
+    </div>
 
-    <a href="#shop"
-       class="inline-block px-10 py-4 border-2 border-black text-xl font-bold uppercase hover:bg-black hover:text-white transition">
-       Shop Jerky
-    </a>
+    <div class="relative max-w-4xl mx-auto">
+      <h2 class="text-5xl md:text-7xl font-display uppercase mb-6 tracking-wider text-khmer-dark">
+        Premium <span class="text-khmer-red">Cambodian</span> Jerky
+      </h2>
+      <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto text-gray-700">
+        Hand-crafted, sun-dried, pan-fried. Bold Khmer spices meet <strong>unbelievable crunch</strong>.
+      </p>
+
+      <a href="#shop" class="inline-block px-12 py-5 bg-khmer-red text-white text-xl font-bold uppercase tracking-wider
+           hover:bg-khmer-dark hover:shadow-xl transition transform hover:-translate-y-1">
+        Shop Now
+      </a>
+    </div>
   </section>
 
   <!-- PRODUCT SECTION -->
-  <section id="shop" class="px-6 py-16">
-    <h3 class="text-3xl font-extrabold uppercase text-center mb-12">
-      Jerky Options
+  <section id="shop" class="px-6 py-20 bg-white">
+    <h3 class="text-4xl md:text-5xl font-display uppercase text-center mb-16 text-khmer-dark">
+      Choose Your Crunch
     </h3>
 
     <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
 
-      <!-- Non Spicy -->
-      <div class="border border-black p-6 flex flex-col">
-        <h4 class="text-2xl font-bold mb-3 uppercase">Non-Spicy</h4>
-        <p class="text-gray-700 mb-6">Classic flavor with zero heat. Crunchy and addictive.</p>
-        <div class="mt-auto">
-          <p class="font-semibold">Bag Sizes:</p>
-          <ul class="list-disc ml-5">
-            <li>$10 Bag</li>
-            <li>$20 Bag</li>
-          </ul>
-        </div>
+      <!-- Flavor Card -->
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️</div>
+        <h4 class="text-2xl font-display uppercase mb-3">Non-Spicy</h4>
+        <p class="mb-6">Classic, sweet, and smoky. Zero heat.</p>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <button class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
+          Add to Cart
+        </button>
       </div>
 
-      <!-- Mild -->
-      <div class="border border-black p-6 flex flex-col">
-        <h4 class="text-2xl font-bold mb-3 uppercase">Mild</h4>
-        <p class="text-gray-700 mb-6">A gentle kick of heat for flavor without the burn.</p>
-        <div class="mt-auto">
-          <p class="font-semibold">Bag Sizes:</p>
-          <ul class="list-disc ml-5">
-            <li>$10 Bag</li>
-            <li>$20 Bag</li>
-          </ul>
-        </div>
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️🌶️</div>
+        <h4 class="text-2xl font-display uppercase mb-3">Mild</h4>
+        <p class="mb-6">Gentle warmth, full flavor.</p>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <button class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
+          Add to Cart
+        </button>
       </div>
 
-      <!-- Spicy -->
-      <div class="border border-black p-6 flex flex-col">
-        <h4 class="text-2xl font-bold mb-3 uppercase">Spicy</h4>
-        <p class="text-gray-700 mb-6">Bold fire for those who like their jerky with attitude.</p>
-        <div class="mt-auto">
-          <p class="font-semibold">Bag Sizes:</p>
-          <ul class="list-disc ml-5">
-            <li>$10 Bag</li>
-            <li>$20 Bag</li>
-          </ul>
-        </div>
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️🌶️🌶️</div>
+        <h4 class="text-2xl font-display uppercase mb-3">Spicy</h4>
+        <p class="mb-6">Bold fire. For heat lovers.</p>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <button class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
+          Add to Cart
+        </button>
       </div>
 
     </div>
 
-    <!-- Keto Option -->
-    <div class="max-w-3xl mx-auto mt-16 border border-black p-8">
-      <h4 class="text-2xl font-bold mb-3 uppercase text-center">Keto Jerky</h4>
-      <p class="text-gray-700 text-center mb-6">
-        Low-carb, high-protein jerky made with zero sugar. Perfect for Keto diets.
-      </p>
-      <div class="text-center">
-        <p class="font-semibold">Bag Sizes:</p>
-        <p>$10 Bag &bull; $20 Bag</p>
-      </div>
+    <!-- Keto Highlight -->
+    <div class="max-w-3xl mx-auto mt-20 p-10 bg-khmer-dark text-white text-center rounded-none border-4 border-khmer-gold">
+      <h4 class="text-3xl font-display uppercase mb-4">🥩 KETO JERKY</h4>
+      <p class="mb-6">Zero sugar. High protein. Pure crunch.</p>
+      <p class="font-bold text-khmer-gold">$10 • $20 Bags</p>
+      <button class="mt-6 px-8 py-3 bg-khmer-gold text-khmer-dark font-bold uppercase hover:bg-white transition">
+        Grab Keto
+      </button>
     </div>
-
   </section>
 
   <!-- ABOUT SECTION -->
-  <section id="about" class="px-6 py-16 border-t border-black bg-black text-white">
-    <h3 class="text-3xl font-extrabold uppercase text-center mb-8">
-      Our Story
-    </h3>
-    <p class="max-w-3xl mx-auto text-lg text-gray-200">
-      Khmer Krunchy Cow was born from a love of traditional Cambodian jerky — thin-sliced, sun-dried, 
-      and pan-fried to perfection. We honor the heritage while adding a modern crunchy twist, using 
-      high-quality beef and authentic spices.
-    </p>
+  <section id="about" class="px-6 py-20 bg-khmer-dark text-khmer-cream">
+    <div class="max-w-4xl mx-auto text-center">
+      <h3 class="text-4xl md:text-5xl font-display uppercase mb-8">Our Story</h3>
+      <p class="text-lg leading-relaxed max-w-3xl mx-auto">
+        Born from street-side grills in Phnom Penh, <strong>Khmer Krunchy Cow</strong> honors the ancient art of 
+        Cambodian beef jerky — thin-sliced, sun-dried, and pan-fried to a shattering crunch. 
+        We blend royal Khmer spices with premium grass-fed beef for a snack that's 
+        <em>addictive, authentic, and proudly Cambodian</em>.
+      </p>
+    </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="px-6 py-16">
-    <h3 class="text-3xl font-extrabold uppercase text-center mb-6">
-      Contact Us
-    </h3>
-
-    <p class="text-center text-gray-700 mb-4">Have questions or want to place a custom order?</p>
-    <p class="text-center font-semibold text-lg">
-      Email: <a href="mailto:info@khmercrunchycow.com" class="underline">info@khmercrunchycow.com</a>
-    </p>
+  <section id="contact" class="px-6 py-20 bg-khmer-cream">
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="text-4xl font-display uppercase mb-8 text-khmer-dark">Get in Touch</h3>
+      <p class="text-lg mb-6 text-gray-700">Custom orders • Wholesale • Questions</p>
+      <a href="mailto:info@khmercrunchycow.com" 
+         class="inline-block px-10 py-4 bg-khmer-red text-white font-bold uppercase text-lg tracking-wider hover:bg-khmer-dark transition">
+        Email Us
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="text-center py-6 border-t border-black">
-    <p class="text-gray-600">&copy; 2025 Khmer Crunchy Cow. All rights reserved.</p>
+  <footer class="bg-khmer-dark text-khmer-cream py-8 text-center border-t-4 border-khmer-gold">
+    <p class="text-sm">&copy; 2025 <span class="font-bold text-khmer-gold">Khmer Krunchy Cow</span>. All rights reserved.</p>
+    <p class="text-xs mt-2 text-gray-400">Hand-crafted with ❤️ in Cambodia & USA</p>
   </footer>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      const mobileNav = document.getElementById('nav-mobile');
+      mobileNav.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 </html>

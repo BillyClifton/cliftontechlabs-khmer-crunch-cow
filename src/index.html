@@ -280,11 +280,8 @@
 
   // Close Menu
   function closeMenu() {
-    mobileMenu.classList.add('translate-x-full');
-    setTimeout(() => {
-      mobileMenu.classList.add('hidden');
-      mobileMenu.classList.remove('open');
-    }, 300);
+    mobileMenu.classList.add('translate-x-full', 'hidden');
+    mobileMenu.classList.remove('open');
     hamLines.forEach(line => line.classList.remove('open'));
     document.body.style.overflow = '';
   }

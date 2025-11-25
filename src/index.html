@@ -1,124 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khmer Krunchy Cow | Premium Cambodian Beef Jerky</title>
-  <meta name="description"
-    content="Hand-crafted Cambodian beef jerky. Crunchy, bold, authentic. Non-spicy, mild, spicy, and keto options available.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khmer Krunchy Cow | Premium Cambodian Beef Jerky</title>
+<meta name="description" content="Hand-crafted Cambodian beef jerky. Crunchy, bold, authentic. Non-spicy, mild, spicy, and keto options available.">
 
 
-  <!-- Open Graph / Social Sharing Tags -->
-  <meta property="og:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
-  <meta property="og:description"
-    content="Hand-crafted Cambodian beef jerky with unbelievable crunch. Spicy, mild, non-spicy, and keto options.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://khmerkrunchycow.com/">
-  <meta property="og:image" content="/assets/logo.png">
-  <meta property="og:image:alt" content="Khmer Krunchy Cow Logo">
-  <meta property="og:site_name" content="Khmer Krunchy Cow">
+<!-- Open Graph / Social Sharing Tags -->
+<meta property="og:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
+<meta property="og:description" content="Hand-crafted Cambodian beef jerky with unbelievable crunch. Spicy, mild, non-spicy, and keto options.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://khmerkrunchycow.com/">
+<meta property="og:image" content="/assets/logo.png">
+<meta property="og:image:alt" content="Khmer Krunchy Cow Logo">
+<meta property="og:site_name" content="Khmer Krunchy Cow">
 
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
-  <meta name="twitter:description" content="Crafted with Khmer spices. Authentic Cambodian beef jerky.">
-  <meta name="twitter:image" content="/assets/logo.png">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
+<meta name="twitter:description" content="Crafted with Khmer spices. Authentic Cambodian beef jerky.">
+<meta name="twitter:image" content="/assets/logo.png">
 
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon.ico">
+<!-- Favicon -->
+<link rel="icon" href="/assets/favicon.ico">
 
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+<script src="/assets/tailwind.3.4.17.js"></script>
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+ <style>
+  /* Hamburger animation */
+  .ham {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: #1A1A1A;
+    margin: 6px auto;
+    border-radius: 2px;
+  }
+  .open .ham1 { transform: none; }
+  .open .ham2 { opacity: 1; }
+  .open .ham3 { transform: none; }
 
+  /* Mobile menu base */
+  #mobile-menu {
+    transform: translateY(-100%); /* Start off-screen at the top */
+    opacity: 1; /* Fully visible */
+    pointer-events: none;
+    transition: transform 0.35s ease; /* Slide down animation */
+  }
 
+  /* Visible state */
+  #mobile-menu.active {
+    transform: translateY(0); /* Slide into view */
+    pointer-events: auto;
+  }
 
-  <script src="/assets/tailwind.3.4.17.js"></script>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap"
-    rel="stylesheet">
-  <style>
-    /* Hamburger animation */
-    .ham {
-      display: block;
-      width: 28px;
-      height: 3px;
-      background: #1A1A1A;
-      margin: 6px auto;
-      border-radius: 2px;
-    }
+  /* Hover underline */
+  .menu-link {
+    position: relative;
+  }
+  .menu-link::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: #FFB300;
+    transform: translateX(-50%);
+    transition: width .3s ease;
+  }
+  .menu-link:hover::after {
+    width: 70%;
+  }
 
-    .open .ham1 {
-      transform: none;
-    }
+  /* Adjusted the close button to improve hitspace and hover animation */
+  #close-btn {
+    padding: 1rem; /* Increase hitspace */
+    border-radius: 50%; /* Make the hit area circular */
+    transition: transform 0.3s ease, color 0.3s ease; /* Add smooth scaling effect */
+  }
 
-    .open .ham2 {
-      opacity: 1;
-    }
-
-    .open .ham3 {
-      transform: none;
-    }
-
-    /* Mobile menu base */
-    #mobile-menu {
-      transform: translateY(-100%);
-      /* Start off-screen at the top */
-      opacity: 1;
-      /* Fully visible */
-      pointer-events: none;
-      transition: transform 0.35s ease;
-      /* Slide down animation */
-    }
-
-    /* Visible state */
-    #mobile-menu.active {
-      transform: translateY(0);
-      /* Slide into view */
-      pointer-events: auto;
-    }
-
-    /* Hover underline */
-    .menu-link {
-      position: relative;
-    }
-
-    .menu-link::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      width: 0;
-      height: 3px;
-      background: #FFB300;
-      transform: translateX(-50%);
-      transition: width .3s ease;
-    }
-
-    .menu-link:hover::after {
-      width: 70%;
-    }
-
-    /* Adjusted the close button to improve hitspace and hover animation */
-    #close-btn {
-      padding: 1rem;
-      /* Increase hitspace */
-      border-radius: 50%;
-      /* Make the hit area circular */
-      transition: transform 0.3s ease, color 0.3s ease;
-      /* Add smooth scaling effect */
-    }
-
-    #close-btn:hover {
-      transform: scale(1.2);
-      /* Slightly enlarge on hover */
-      color: #FFD700;
-      /* Change hover color to gold */
-    }
-  </style>
+  #close-btn:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    color: #FFD700; /* Change hover color to gold */
+  }
+</style>
 
   <script>
     tailwind.config = {
@@ -138,59 +113,58 @@
       }
     }
   </script>
-
-
 </head>
 
 <body class="bg-khmer-cream text-khmer-dark min-h-screen">
 
-  <!-- HEADER (Updated) -->
-  <header class="border-b-4 border-khmer-dark py-4 px-6 sticky top-0 bg-khmer-cream z-50 shadow-md">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <!-- Logo -->
-      <a href="/" class="group">
-        <img src="/assets/logo.png" alt="Khmer Krunchy Cow Logo"
-          class="w-20 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
-      </a>
+ <!-- HEADER (Updated) -->
+<header class="border-b-4 border-khmer-dark py-4 px-6 sticky top-0 bg-khmer-cream z-50 shadow-md">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="group">
+      <img src="/assets/logo.png" alt="Khmer Krunchy Cow Logo" 
+           class="w-20 h-20 object-contain drop-shadow-lg group-hover:scale-110 transition-transform duration-300">
+    </a>
 
-      <h1 class="text-3xl font-display font-bold tracking-widest text-khmer-red hidden md:block">
-        KHMER KRUNCHY COW
-      </h1>
+    <h1 class="text-3xl font-display font-bold tracking-widest text-khmer-red hidden md:block">
+      KHMER KRUNCHY COW
+    </h1>
 
-      <!-- Mobile Menu Button -->
-      <button id="menu-btn" aria-label="Open menu" class="md:hidden text-3xl focus:outline-none z-50 relative">
-        <span class="ham ham1"></span>
-        <span class="ham ham2"></span>
-        <span class="ham ham3"></span>
-      </button>
+    <!-- Mobile Menu Button -->
+    <button id="menu-btn" aria-label="Open menu" class="md:hidden text-3xl focus:outline-none z-50 relative">
+      <span class="ham ham1"></span>
+      <span class="ham ham2"></span>
+      <span class="ham ham3"></span>
+    </button>
 
-      <!-- Desktop Nav -->
-      <nav id="nav-desktop" class="hidden md:flex gap-8 text-lg font-semibold">
-        <a href="#shop" class="hover:text-khmer-red transition">Shop</a>
-        <a href="#about" class="hover:text-khmer-red transition">About</a>
-        <a href="#contact" class="hover:text-khmer-red transition">Contact</a>
-      </nav>
-    </div>
+    <!-- Desktop Nav -->
+    <nav id="nav-desktop" class="hidden md:flex gap-8 text-lg font-semibold">
+      <a href="#shop" class="hover:text-khmer-red transition">Shop</a>
+      <a href="#about" class="hover:text-khmer-red transition">About</a>
+      <a href="#contact" class="hover:text-khmer-red transition">Contact</a>
+    </nav>
+  </div>
 
-    <!-- MOBILE MENU OVERLAY -->
-    <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark z-40 flex flex-col items-center justify-center">
-      <button id="close-btn" aria-label="Close menu"
-        class="absolute top-8 right-8 text-khmer-gold text-5xl hover:text-white transition">
-        ×
-      </button>
+  <!-- MOBILE MENU OVERLAY -->
+  <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark z-40 flex flex-col items-center justify-center">
+  <button id="close-btn" aria-label="Close menu"
+    class="absolute top-8 right-8 text-khmer-gold text-5xl hover:text-white transition">
+    ×
+  </button>
 
-      <img src="/assets/logo.png" alt="Khmer Krunchy Cow" class="w-32 h-32 mb-12 drop-shadow-xl">
+  <img src="/assets/logo.png" alt="Khmer Krunchy Cow"
+       class="w-32 h-32 mb-12 drop-shadow-xl">
 
-      <nav class="flex flex-col gap-10 text-3xl font-display uppercase tracking-widest text-khmer-cream">
-        <a href="#shop" class="menu-link hover:text-khmer-gold transition">Shop</a>
-        <a href="#about" class="menu-link hover:text-khmer-gold transition">About</a>
-        <a href="#contact" class="menu-link hover:text-khmer-gold transition">Contact</a>
-      </nav>
+  <nav class="flex flex-col gap-10 text-3xl font-display uppercase tracking-widest text-khmer-cream">
+    <a href="#shop" class="menu-link hover:text-khmer-gold transition">Shop</a>
+    <a href="#about" class="menu-link hover:text-khmer-gold transition">About</a>
+    <a href="#contact" class="menu-link hover:text-khmer-gold transition">Contact</a>
+  </nav>
 
-      <p class="mt-16 text-khmer-gold text-lg italic">Crunch Like a Cambodian</p>
-    </div>
+  <p class="mt-16 text-khmer-gold text-lg italic">Crunch Like a Cambodian</p>
+</div>
 
-  </header>
+</header>
 
   <!-- HERO SECTION -->
   <section class="relative px-6 py-24 text-center overflow-hidden">
@@ -222,92 +196,54 @@
 
     <div class="grid md:grid-cols-3 gap-10 max-w-6xl mx-auto">
 
-      <!-- NON-SPICY -->
-      <div
-        class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
-        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️
-        </div>
+      <!-- Flavor Card -->
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️</div>
         <h4 class="text-2xl font-display uppercase mb-3">Non-Spicy</h4>
         <p class="mb-6">Classic, sweet, and smoky. Zero heat.</p>
-        <div class="flex justify-center gap-4">
-          <button onclick="buyProduct('price_1SXTrGBip1aguJ8UM8igVL2V')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Small $10
-          </button>
-          <button onclick="buyProduct('price_1SXU1UBip1aguJ8UZ4OQ3qft')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Big $20
-          </button>
-        </div>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <a href="https://buy.stripe.com/test_eVq7sK75C7P98144nA7bW01" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Small</a>
+        <a href="https://buy.stripe.com/test_fZu7sKahO8Td6X0dYa7bW00" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Big</a>
       </div>
 
-      <!-- MILD -->
-      <div
-        class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
-        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️🌶️
-        </div>
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️🌶️</div>
         <h4 class="text-2xl font-display uppercase mb-3">Mild</h4>
         <p class="mb-6">Gentle warmth, full flavor.</p>
-        <div class="flex justify-center gap-4">
-          <button onclick="buyProduct('price_1SXTzcBip1aguJ8UhItpFoFL')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Small $10
-          </button>
-          <button onclick="buyProduct('price_1SXU1yBip1aguJ8UAORsR5n0')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Big $20
-          </button>
-        </div>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <a href="https://buy.stripe.com/test_8x26oGey46L51CG1bo7bW02" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Small</a>
+        <a href="https://buy.stripe.com/test_aFa9ASdu0edxchkdYa7bW03" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Big</a>
       </div>
 
-      <!-- SPICY -->
-      <div
-        class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
-        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">
-          🌶️🌶️🌶️</div>
+      <div class="group border-4 border-khmer-dark p-8 text-center hover:bg-khmer-red hover:text-white transition-all duration-300">
+        <div class="w-24 h-24 mx-auto mb-6 bg-khmer-gold rounded-full flex items-center justify-center text-5xl">🌶️🌶️🌶️</div>
         <h4 class="text-2xl font-display uppercase mb-3">Spicy</h4>
         <p class="mb-6">Bold fire. For heat lovers.</p>
-        <div class="flex justify-center gap-4">
-          <button onclick="buyProduct('price_1SXTalBip1aguJ8UtOYDGDX8')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Small $10
-          </button>
-          <button onclick="buyProduct('price_1SXU0oBip1aguJ8UDyyN24nb')"
-            class="px-4 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition">
-            Big $20
-          </button>
-        </div>
+        <p class="font-bold">$10 • $20 Bags</p>
+        <a href="https://buy.stripe.com/test_dRmfZgblS9XhbdgaLY7bW04" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Small</a>
+        <a href="https://buy.stripe.com/test_5kQ28q1Lid9t8149HU7bW05" class="mt-4 px-6 py-2 border-2 border-current uppercase font-bold text-sm hover:bg-white hover:text-khmer-red transition inline-block">Buy Big</a>
       </div>
 
     </div>
 
-    <!-- KETO -->
-    <div
-      class="max-w-3xl mx-auto mt-20 p-10 bg-khmer-dark text-white text-center rounded-none border-4 border-khmer-gold">
+    <!-- Keto Highlight -->
+    <div class="max-w-3xl mx-auto mt-20 p-10 bg-khmer-dark text-white text-center rounded-none border-4 border-khmer-gold">
       <h4 class="text-3xl font-display uppercase mb-4">🥩 KETO JERKY</h4>
       <p class="mb-6">Zero sugar. High protein. Pure crunch.</p>
-      <div class="flex justify-center gap-4">
-        <button onclick="buyProduct('price_1SXU2CBip1aguJ8Uu9vwerR7')"
-          class="px-6 py-3 bg-khmer-gold text-khmer-dark font-bold uppercase hover:bg-white transition">
-          Small $10
-        </button>
-        <button onclick="buyProduct('price_1SXU2dBip1aguJ8U72HBc3z2')"
-          class="px-6 py-3 bg-khmer-gold text-khmer-dark font-bold uppercase hover:bg-white transition">
-          Big $20
-        </button>
-      </div>
+      <p class="font-bold text-khmer-gold">$10 • $20 Bags</p>
+      <a href="https://buy.stripe.com/test_6oU8wO9dK3yTgxA5rE7bW06" class="mt-6 px-8 py-3 bg-khmer-gold text-khmer-dark font-bold uppercase hover:bg-white transition inline-block">Buy Small</a>
+      <a href="https://buy.stripe.com/test_4gMdR8cpWd9t0yC5rE7bW07" class="mt-6 px-8 py-3 bg-khmer-gold text-khmer-dark font-bold uppercase hover:bg-white transition inline-block">Buy Big</a>
     </div>
   </section>
-
 
   <!-- ABOUT SECTION -->
   <section id="about" class="px-6 py-20 bg-khmer-dark text-khmer-cream">
     <div class="max-w-4xl mx-auto text-center">
       <h3 class="text-4xl md:text-5xl font-display uppercase mb-8">Our Story</h3>
       <p class="text-lg leading-relaxed max-w-3xl mx-auto">
-        Born from street-side grills in Phnom Penh, <strong>Khmer Krunchy Cow</strong> honors the ancient art of
-        Cambodian beef jerky — thin-sliced, sun-dried, and pan-fried to a shattering crunch.
-        We blend royal Khmer spices with premium grass-fed beef for a snack that's
+        Born from street-side grills in Phnom Penh, <strong>Khmer Krunchy Cow</strong> honors the ancient art of 
+        Cambodian beef jerky — thin-sliced, sun-dried, and pan-fried to a shattering crunch. 
+        We blend royal Khmer spices with premium grass-fed beef for a snack that's 
         <em>addictive, authentic, and proudly Cambodian</em>.
       </p>
     </div>
@@ -318,8 +254,8 @@
     <div class="max-w-2xl mx-auto text-center">
       <h3 class="text-4xl font-display uppercase mb-8 text-khmer-dark">Get in Touch</h3>
       <p class="text-lg mb-6 text-gray-700">Custom orders • Wholesale • Questions</p>
-      <a href="mailto:info@khmercrunchycow.com"
-        class="inline-block px-10 py-4 bg-khmer-red text-white font-bold uppercase text-lg tracking-wider hover:bg-khmer-dark transition">
+      <a href="mailto:info@khmercrunchycow.com" 
+         class="inline-block px-10 py-4 bg-khmer-red text-white font-bold uppercase text-lg tracking-wider hover:bg-khmer-dark transition">
         Email Us
       </a>
     </div>
@@ -327,69 +263,51 @@
 
   <!-- FOOTER -->
   <footer class="bg-khmer-dark text-khmer-cream py-8 text-center border-t-4 border-khmer-gold">
-    <p class="text-sm">&copy; 2025 <span class="font-bold text-khmer-gold">Khmer Krunchy Cow</span>. All rights
-      reserved.</p>
+    <p class="text-sm">&copy; 2025 <span class="font-bold text-khmer-gold">Khmer Krunchy Cow</span>. All rights reserved.</p>
     <p class="text-xs mt-2 text-gray-400">Hand-crafted with ❤️ in Cambodia & USA</p>
   </footer>
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const closeBtn = document.getElementById("close-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const links = document.querySelectorAll(".menu-link");
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".menu-link");
 
-    function openMenu() {
-      mobileMenu.classList.add("active");
-      menuBtn.classList.add("open");
-      document.body.style.overflow = "hidden";
-    }
+  function openMenu() {
+    mobileMenu.classList.add("active");
+    menuBtn.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
 
-    function closeMenu() {
-      mobileMenu.classList.remove("active");
-      menuBtn.classList.remove("open");
-      document.body.style.overflow = "";
+  function closeMenu() {
+    mobileMenu.classList.remove("active");
+    menuBtn.classList.remove("open");
+    document.body.style.overflow = "";
 
-      // Reset hamburger animation
-      hamLines.forEach(line => {
-        line.style.transform = "";
-        line.style.opacity = "";
-      });
-    }
-
-    menuBtn.addEventListener("click", openMenu);
-    closeBtn.addEventListener("click", closeMenu);
-
-    links.forEach(link => {
-      link.addEventListener("click", closeMenu);
+    // Reset hamburger animation
+    hamLines.forEach(line => {
+      line.style.transform = "";
+      line.style.opacity = "";
     });
+  }
 
-    // Click outside content to close
-    mobileMenu.addEventListener("click", (e) => {
-      if (e.target === mobileMenu) closeMenu();
-    });
+  menuBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
 
-    // Escape key closes menu
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeMenu();
-    });
-  </script>
-  <script src="https://js.stripe.com/v3/"></script>
-  <script>
-    const stripe = Stripe("pk_test_51SXTZaBip1aguJ8UgEupesncjjiMz8W3AyFOzmVZfhx9w7lo4FjSwhYA6pqq5b0E86D5BIASGtHTTo8NBBuokRKf00oqU0124P");
+  links.forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
 
-    function buyProduct(priceId) {
-      stripe.redirectToCheckout({
-        lineItems: [{ price: priceId, quantity: 1 }],
-        mode: 'payment',
-        successUrl: window.location.origin + '/success.html',
-        cancelUrl: window.location.origin + '/cancel.html'
-      }).then(function (result) {
-        if (result.error) {
-          alert(result.error.message);
-        }
-      });
-    }
-  </script>
+  // Click outside content to close
+  mobileMenu.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) closeMenu();
+  });
+
+  // Escape key closes menu
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
+</script>
+
 
 </body>
-
 </html>

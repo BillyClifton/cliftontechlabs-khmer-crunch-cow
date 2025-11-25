@@ -1,20 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khmer Krunchy Cow | Premium Cambodian Beef Jerky</title>
-  <meta name="description" content="Hand-crafted Cambodian beef jerky. Crunchy, bold, authentic. Non-spicy, mild, spicy, and keto options available.">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Khmer Krunchy Cow | Premium Cambodian Beef Jerky</title>
+<meta name="description" content="Hand-crafted Cambodian beef jerky. Crunchy, bold, authentic. Non-spicy, mild, spicy, and keto options available.">
 
-  <!-- Favicon -->
-  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32">
-  <link rel="icon" href="/assets/favicon-16.png" sizes="16x16">
 
+<!-- Open Graph / Social Sharing Tags -->
+<meta property="og:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
+<meta property="og:description" content="Hand-crafted Cambodian beef jerky with unbelievable crunch. Spicy, mild, non-spicy, and keto options.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://khmerkrunchycow.com/">
+<meta property="og:image" content="/assets/logo.png">
+<meta property="og:image:alt" content="Khmer Krunchy Cow Logo">
+<meta property="og:site_name" content="Khmer Krunchy Cow">
+
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Khmer Krunchy Cow | Premium Cambodian Beef Jerky">
+<meta name="twitter:description" content="Crafted with Khmer spices. Authentic Cambodian beef jerky.">
+<meta name="twitter:image" content="/assets/logo.png">
+
+
+<!-- Favicon -->
+<link rel="icon" href="/assets/favicon.ico">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+<script src="/assets/tailwind.3.4.17.js"></script>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Tailwind + Custom Colors -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <style>
   /* Hamburger Animation */
   .ham {
@@ -55,7 +75,16 @@
   .menu-link:hover::after {
     width: 70%;
   }
-</style>
+
+  /* Close Button Alignment */
+  #close-btn {
+  position: absolute;
+  top: 16px; /* Adjusted for better alignment */
+  right: 16px; /* Adjusted for better alignment */
+  text-align: center;
+  cursor: pointer;
+}
+  </style>
   <script>
     tailwind.config = {
       theme: {
@@ -109,7 +138,7 @@
   <!-- MOBILE MENU OVERLAY -->
   <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark bg-opacity-95 transform translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col items-center justify-center hidden">
     <!-- Close Button -->
-    <button id="close-btn" aria-label="Close menu" class="absolute top-8 right-8 text-khmer-gold text-4xl hover:text-white transition">
+    <button id="close-btn" aria-label="Close menu" class="absolute top-16 right-16 text-khmer-gold text-4xl hover:text-white transition">
       ×
     </button>
 

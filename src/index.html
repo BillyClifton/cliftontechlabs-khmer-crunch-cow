@@ -35,56 +35,67 @@
 <script src="/assets/tailwind.3.4.17.js"></script>
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-  /* Hamburger Animation */
+ <style>
+  /* Hamburger animation */
   .ham {
     display: block;
     width: 28px;
     height: 3px;
     background: #1A1A1A;
     margin: 6px auto;
-    transition: 0.3s;
     border-radius: 2px;
   }
+  .open .ham1 { transform: none; }
+  .open .ham2 { opacity: 1; }
+  .open .ham3 { transform: none; }
 
-  .ham1.open { transform: rotate(45deg) translate(8px, 8px); }
-  .ham2.open { opacity: 0; }
-  .ham3.open { transform: rotate(-45deg) translate(7px, -7px); }
-
-  /* Mobile Menu Open State */
-  #mobile-menu.open {
-    transform: translateX(0);
-    display: flex;
+  /* Mobile menu base */
+  #mobile-menu {
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s ease, opacity 0.35s ease;
   }
 
-  /* Smooth link close */
+  /* Visible state */
+  #mobile-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Hover underline */
   .menu-link {
     position: relative;
   }
   .menu-link::after {
-    content: '';
+    content: "";
     position: absolute;
-    bottom: -8px;
+    bottom: -6px;
     left: 50%;
     width: 0;
     height: 3px;
     background: #FFB300;
-    transition: all 0.3s;
     transform: translateX(-50%);
+    transition: width .3s ease;
   }
   .menu-link:hover::after {
     width: 70%;
   }
 
-  /* Close Button Alignment */
+  /* Adjusted the close button to improve hitspace and hover animation */
   #close-btn {
-  position: absolute;
-  top: 16px; /* Adjusted for better alignment */
-  right: 16px; /* Adjusted for better alignment */
-  text-align: center;
-  cursor: pointer;
-}
-  </style>
+    padding: 1rem; /* Increase hitspace */
+    border-radius: 50%; /* Make the hit area circular */
+    transition: transform 0.3s ease, color 0.3s ease; /* Add smooth scaling effect */
+  }
+
+  #close-btn:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    color: #FFD700; /* Change hover color to gold */
+  }
+</style>
+
   <script>
     tailwind.config = {
       theme: {
@@ -136,25 +147,24 @@
   </div>
 
   <!-- MOBILE MENU OVERLAY -->
-  <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark bg-opacity-95 transform translate-x-full transition-transform duration-300 ease-in-out z-40 flex flex-col items-center justify-center hidden">
-    <!-- Close Button -->
-    <button id="close-btn" aria-label="Close menu" class="absolute top-16 right-16 text-khmer-gold text-4xl hover:text-white transition">
-      ×
-    </button>
+  <div id="mobile-menu" class="fixed inset-0 bg-khmer-dark bg-opacity-95 z-40 flex flex-col items-center justify-center">
+  <button id="close-btn" aria-label="Close menu"
+    class="absolute top-8 right-8 text-khmer-gold text-5xl hover:text-white transition">
+    ×
+  </button>
 
-    <!-- Logo in Menu -->
-    <img src="/assets/logo.png" alt="Khmer Krunchy Cow" class="w-32 h-32 mb-12 drop-shadow-xl animate-pulse">
+  <img src="/assets/logo.png" alt="Khmer Krunchy Cow"
+       class="w-32 h-32 mb-12 drop-shadow-xl">
 
-    <!-- Nav Links -->
-    <nav class="flex flex-col gap-10 text-3xl font-display uppercase tracking-widest text-khmer-cream">
-      <a href="#shop" class="menu-link hover:text-khmer-gold transition">Shop</a>
-      <a href="#about" class="menu-link hover:text-khmer-gold transition">About</a>
-      <a href="#contact" class="menu-link hover:text-khmer-gold transition">Contact</a>
-    </nav>
+  <nav class="flex flex-col gap-10 text-3xl font-display uppercase tracking-widest text-khmer-cream">
+    <a href="#shop" class="menu-link hover:text-khmer-gold transition">Shop</a>
+    <a href="#about" class="menu-link hover:text-khmer-gold transition">About</a>
+    <a href="#contact" class="menu-link hover:text-khmer-gold transition">Contact</a>
+  </nav>
 
-    <!-- Fun Tagline -->
-    <p class="mt-16 text-khmer-gold text-lg font-body italic">Crunch Like a Cambodian</p>
-  </div>
+  <p class="mt-16 text-khmer-gold text-lg italic">Crunch Like a Cambodian</p>
+</div>
+
 </header>
 
   <!-- HERO SECTION -->
@@ -261,41 +271,48 @@
     <p class="text-sm">&copy; 2025 <span class="font-bold text-khmer-gold">Khmer Krunchy Cow</span>. All rights reserved.</p>
     <p class="text-xs mt-2 text-gray-400">Hand-crafted with ❤️ in Cambodia & USA</p>
   </footer>
-
-  <!-- Mobile Menu Script -->
 <script>
-  const menuBtn = document.getElementById('menu-btn');
-  const closeBtn = document.getElementById('close-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamLines = document.querySelectorAll('.ham');
-  const links = document.querySelectorAll('.menu-link');
+  const menuBtn = document.getElementById("menu-btn");
+  const closeBtn = document.getElementById("close-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const links = document.querySelectorAll(".menu-link");
 
-  // Open Menu
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.remove('hidden', 'translate-x-full');
-    mobileMenu.classList.add('open');
-    hamLines.forEach(line => line.classList.add('open'));
-    document.body.style.overflow = 'hidden'; // Prevent scroll
-  });
-
-  // Close Menu
-  function closeMenu() {
-    mobileMenu.classList.add('translate-x-full', 'hidden');
-    mobileMenu.classList.remove('open');
-    hamLines.forEach(line => line.classList.remove('open'));
-    document.body.style.overflow = '';
+  function openMenu() {
+    mobileMenu.classList.add("active");
+    menuBtn.classList.add("open");
+    document.body.style.overflow = "hidden";
   }
 
-  closeBtn.addEventListener('click', closeMenu);
+  function closeMenu() {
+    mobileMenu.classList.remove("active");
+    menuBtn.classList.remove("open");
+    document.body.style.overflow = "";
+
+    // Reset hamburger animation
+    hamLines.forEach(line => {
+      line.style.transform = "";
+      line.style.opacity = "";
+    });
+  }
+
+  menuBtn.addEventListener("click", openMenu);
+  closeBtn.addEventListener("click", closeMenu);
+
   links.forEach(link => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener("click", closeMenu);
   });
 
-  // Close on outside click
-  mobileMenu.addEventListener('click', (e) => {
+  // Click outside content to close
+  mobileMenu.addEventListener("click", (e) => {
     if (e.target === mobileMenu) closeMenu();
   });
+
+  // Escape key closes menu
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeMenu();
+  });
 </script>
+
 
 </body>
 </html>
